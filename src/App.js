@@ -1,43 +1,27 @@
 import React, { Component } from 'react';
 
-// class App extends Component {
-//   render() {
-//     return <React.Fragment>
-//       <label htmlFor="hoge">ほげ</label>
-//       <button type="button" onClick={() => console.log('hoge!')} >ボタン</button>
-//     </React.Fragment>;
-//   }
-// }
+const App = () => (<Counter />)
 
-const App = () => {
-  const profiles = [
-    {
-      name: '荒瀬',
-      age: 25,
-    },
-    {
-      name: '吉田',
-      age: 27,
-    },
-    {
-      name: 'ほげお'
-    }
-  ]
-  return <div>
-    {
-      profiles.map((props, index) => {
-        return <User name={props.name} age={props.age} key={index}/>
-      })
-    }
-  </div>
+class Counter extends Component {
+  constructor(props) {
+    super(props)
+    console.log(this.state)
+    this.state = {count: 0}
+  }
+
+  handlePlusButton = () => {
+    console.log(this)
+    // this.setState({ count: this.state.count + 1})
+  }
+
+  render() {
+    console.log('rend')
+    return (
+      <React.Fragment>{this.state.count}
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button onClick={() => this.setState({ count: this.state.count - 1})}>-1</button>
+      </React.Fragment>
+    )
+  }
 }
-
-const User = (props) => {
-return <div>I am {props.name}! I am {props.age} years old!</div>;
-}
-
-User.defaultProps = {
-  age: '秘密'
-}
-
 export default App;
